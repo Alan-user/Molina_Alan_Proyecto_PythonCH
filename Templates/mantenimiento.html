@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página en Mantenimiento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #333;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #FF6347;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .icon {
+      font-size: 4em;
+      color: #FF6347;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      font-size: 0.9em;
+      color: #999;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">⚙️</div>
+    <h1>Sitio en Mantenimiento</h1>
+    <p>Estamos trabajando en mejorar nuestra página. Por favor, vuelva a visitarnos más tarde.</p>
+    <p class="footer">Gracias por su paciencia.</p>
+
+    <a class="btn btn-primary" href="{% url 'inicio:inicio' %}">Volver</a>
+
+  </div>
+</body>
+</html>

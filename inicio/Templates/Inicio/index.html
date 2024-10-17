@@ -3,3 +3,55 @@
 {% block title_head %}
 Inicio
 {% endblock title_head %}
+
+{% block content %}
+
+<h1>Instrucciones</h1>
+
+    <p>Mediante este sitio usted prodrá tener un control de sus gastos, diferenciando los flujos de
+    entrada y salida de forma sencilla para no perder de vista su billetera!
+    </p>
+
+    <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+    <p>Para ello podrás ingresar cada uno de estos flujos por los botones que se encuentran al 
+    final de las descripciones de cada sección. Si ingresas un valor positivo será tomado
+    como un ingreso pero si es negativo se tomará como un gasto</p>
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<h2>Página Principal</h2>
+    <p>En la sección "Tablero General" te permitirá identificar las principales medidas de
+        tendencia de tu billetera.</p>
+
+    <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+    <p>Esto incluye un pequeño resumen del total de tus gastos e ingresos y algunos KPI's
+        de interés!
+    </p>
+    
+<h2>Flujo de Movimientos</h2>
+
+    <p>En este apartado podrá diferenciar sus entradas de dinero y gastos, pudiendo analizar
+       con el detalle que requiera cuando se presentó cada uno de ellos.
+    </p>
+
+<h2>Gráficas</h2>
+
+    <p>Por último, se mostrará en forma de gráfico de lineas la evolución temporal de sus 
+        flujos netos y una tabla que los reuna.
+    </p>
+
+{% endblock content %}
+
+{% block Tarjetas %}
+
+{% endblock Tarjetas %}
+
+{% block Charts %}
+
+{% endblock Charts %}
+
+{% block Table %}
+
+{% endblock Table %}
