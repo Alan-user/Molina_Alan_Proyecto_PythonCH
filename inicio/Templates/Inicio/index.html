@@ -6,17 +6,35 @@ Inicio
 
 {% block content %}
 
+
 <h1>Instrucciones</h1>
 
-    <p>Mediante este sitio usted prodrá tener un control de sus gastos, diferenciando los flujos de
+<p>Mediante este sitio usted prodrá tener un control de sus gastos, diferenciando los flujos de
     entrada y salida de forma sencilla para no perder de vista su billetera!
-    </p>
+</p>
 
-    <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
 
-    <p>Para ello podrás ingresar cada uno de estos flujos por los botones que se encuentran al 
-    final de las descripciones de cada sección. Si ingresas un valor positivo será tomado
-    como un ingreso pero si es negativo se tomará como un gasto</p>
+    <p>Para ello podrás ingresar cada uno de estos flujos por los botones que se encuentran a 
+    continuación.</p>
+
+<form action= {% url "inicio:inicio" %} method="POST">
+
+    
+    {% csrf_token %}
+    
+    <h2>Aquí podrás cargar un nuevo movimiento de dinero</h2>
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Enviar">
+</form>
+
+<style>
+    .errorlist {
+        display: none; /* Oculta todos los mensajes de error */
+    }
+</style>
 
 <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
 
@@ -43,15 +61,3 @@ Inicio
     </p>
 
 {% endblock content %}
-
-{% block Tarjetas %}
-
-{% endblock Tarjetas %}
-
-{% block Charts %}
-
-{% endblock Charts %}
-
-{% block Table %}
-
-{% endblock Table %}

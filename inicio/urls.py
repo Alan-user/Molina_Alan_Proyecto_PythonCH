@@ -1,7 +1,6 @@
 from django.urls import path
 from inicio.views import inicio, about_me, Tablero_general, egresos, ingresos, graficas
 from inicio.views import tabla_general
-
 app_name = 'inicio'
 
 urlpatterns = [

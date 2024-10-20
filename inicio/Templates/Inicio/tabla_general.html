@@ -1,1 +1,77 @@
-{% extends "mantenimiento.html" %}
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% load format_filters %}
+
+{% block title_head %}
+Tabla General
+{% endblock title_head %}
+
+{% block content %}
+
+<style>
+    .tabla {
+        width: 100%;
+        border-collapse: collapse; /* Asegura que los bordes se colapsen */
+    }
+
+    /* Estilo de las cabeceras */
+    .tabla th {
+        padding: 10px;
+        text-align: left;
+        background-color: #f2f2f2;
+        border-bottom: 2px solid black; /* Solo borde inferior para las cabeceras */
+        width: 25%; /* Ajusta el ancho de las cabeceras según sea necesario */
+    }
+
+    /* Estilo de las celdas */
+    .tabla td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid black; /* Solo borde inferior para las celdas */
+    }
+
+    /* Remover el borde del contorno de la tabla */
+    .tabla, .tabla tr {
+        border: none; /* Sin borde exterior */
+    }
+
+    .formulario {
+        margin-bottom: 20px; /* Espacio entre el formulario y la tabla */
+    }
+</style>
+
+<div class="formulario">
+    <form action="{% url 'inicio:tabla_general' %}" method="GET">
+        {{ form.as_p }}
+        <input type="submit" value="Buscar">
+    </form>
+</div>
+
+{% if flujos %}
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>Tipo de Movimiento</th>
+            <th>Importe</th>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Concepto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for flujo in flujos %}
+        <tr>
+            <td>{{ flujo.tipo_de_flujo }}</td>
+            <td>{{ flujo.importe|custom_float_format }}</td>
+            <td>{{ flujo.fecha|date:"d/m/Y" }}</td>
+            <td>{{ flujo.tipo }}</td>
+            <td>{{ flujo.concepto }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay flujos registrados para la selección marcada. Por favor, asegurese que haya ingresado correctamente los filtros o, bien, ingrese un nuevo flujo de dinero en la página principal para visualizarlo en esta sección.</p>
+{% endif %}
+{% endblock content %}
