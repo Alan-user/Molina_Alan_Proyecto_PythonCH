@@ -13,10 +13,11 @@ def inicio(request):
         if formulario.is_valid():
             data = formulario.cleaned_data
             flujo = Flujo_dinero(
-                tipoflujo=data.get('tipo_de_flujo'),
+                tipo_de_flujo=data.get('tipo_de_flujo'),
                 fecha=data.get('fecha'),
                 importe=data.get('importe'),
-                concepto=data.get('concepto')
+                tipo=data.get('tipo'),
+                concepto=data.get('concepto'),
             )
             flujo.save()
         # Reinicia el formulario después de guardar

@@ -10,21 +10,24 @@ class CrearFlujoForm(forms.Form):
     ]
     
     TIPO_GASTO_CHOICES = [
+        ('', 'Seleccione una opción'),
+        ('Pago de Haberes', 'Pago de Haberes'),
         ('Servicio', 'Servicio'),
         ('Gasto Puntual', 'Gasto Puntual'),
         ('Membresía', 'Membresía'),
         ('Seguros', 'Seguros'),
+        ('Otros', 'Otros')
     ]
     
     tipo_de_flujo = forms.ChoiceField(choices=TIPO_MOVIMIENTO_CHOICES, 
         widget=forms.RadioSelect,
-        label="Selecciona el tipo de movimiento:")
+        label='tipo_de_flujo', required=True)
     fecha = forms.DateField(widget=forms.TextInput(attrs={'placeholder': 'DD-MM-YYYY'}),
-                            label='Fecha')
+                            label='Fecha', required=True)
     importe = forms.FloatField(widget=forms.NumberInput(attrs={'placeholder': '$$$$$'}),
-        label='Importe')
-    tipo = forms.ChoiceField(choices=TIPO_GASTO_CHOICES, label='Tipo de Gasto')
-    concepto = forms.CharField(max_length=20, label='Concepto')
+        label='Importe', required=True)
+    tipo = forms.ChoiceField(choices=TIPO_GASTO_CHOICES, label='Tipo de Gasto', required=True)
+    concepto = forms.CharField(max_length=20, label='Concepto', required=True)
 
 class BuscarFlujoForm(forms.Form):
     TIPO_MOVIMIENTO_CHOICES = [
