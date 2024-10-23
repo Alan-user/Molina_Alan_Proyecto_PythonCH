@@ -11242,7 +11242,6 @@ body {
   border-radius: 0.375rem !important;
 }
 
-<style>
     table {
         width: 100%;
         border-collapse: collapse;
@@ -11266,4 +11265,3 @@ body {
     td:last-child {
         border-right: none;
     }
-</style>

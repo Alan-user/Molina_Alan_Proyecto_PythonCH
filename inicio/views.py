@@ -17,9 +17,10 @@ def inicio(request):
                 fecha=data.get('fecha'),
                 importe=data.get('importe'),
                 tipo=data.get('tipo'),
-                concepto=data.get('concepto'),
+                concepto=data.get('concepto')
             )
             flujo.save()
+
         # Reinicia el formulario después de guardar
         formulario = CrearFlujoForm()
 
