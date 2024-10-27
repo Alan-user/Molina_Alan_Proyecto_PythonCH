@@ -20,7 +20,7 @@ Tabla General
         text-align: left;
         background-color: #f2f2f2;
         border-bottom: 2px solid black; /* Solo borde inferior para las cabeceras */
-        width: 25%; /* Ajusta el ancho de las cabeceras según sea necesario */
+        width: 0%; /* Ajusta el ancho de las cabeceras según sea necesario */
     }
 
     /* Estilo de las celdas */
@@ -36,14 +36,17 @@ Tabla General
     }
 
     .formulario {
-        margin-bottom: 20px; /* Espacio entre el formulario y la tabla */
+        margin-bottom: 30px; /* Espacio entre el formulario y la tabla */
     }
 </style>
+
+{% comment "Formulario para instanciar un flujo" %}{% endcomment %}
 
 <div class="formulario">
     <form action="{% url 'inicio:tabla_general' %}" method="GET">
         {{ form.as_p }}
-        <input type="submit" value="Buscar">
+        <input type="submit" value="Buscar" class="btn btn-primary">
+        <a href="{% url 'inicio:tabla_general' %}" class="btn btn-secondary">Limpiar Filtros</a>
     </form>
 </div>
 
@@ -55,7 +58,7 @@ Tabla General
             <th>Importe</th>
             <th>Fecha</th>
             <th>Tipo</th>
-            <th>Concepto</th>
+            <th>Acción</th>
         </tr>
     </thead>
     <tbody>
@@ -65,7 +68,11 @@ Tabla General
             <td>{{ flujo.importe|custom_float_format }}</td>
             <td>{{ flujo.fecha|date:"d/m/Y" }}</td>
             <td>{{ flujo.tipo }}</td>
-            <td>{{ flujo.concepto }}</td>
+            <td>{{auto}} 
+                | <a href={% url "inicio:ver_flujo" flujo.id %}>Ver más</a>
+                | <a href={% url "inicio:editar_flujo" flujo.id %}>Editar</a>
+                | <a href={% url "inicio:eliminar_flujo" flujo.id %}>Eliminar</a> |
+            </td>
         </tr>
         {% endfor %}
     </tbody>

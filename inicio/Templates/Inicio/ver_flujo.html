@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load format_filters %}
+{% block title_head %}
+Ver Flujo
+{% endblock title_head %}
+
+{% block content %}
+<h3> Aquí podrá ver el flujo seleccionado </h2>
+<p>
+    
+</p>
+{% comment "Esta sección es del ver un flujo en particular" %}{% endcomment %}
+<ul>
+    <li><b>Tipo de Flujo:</b> {{flujo.tipo_de_flujo}}</li>
+    <li><b>Importe:</b> {{flujo.importe}} </li>
+    <li><b>Clase: </b>{{flujo.tipo}} </li>
+    <li><b>Concepto: </b>{{flujo.concepto}} </li>
+</ul>
+
+<a href="{% url 'inicio:tabla_general' %}" class="btn btn-primary">Volver</a>
+{% endblock content %}

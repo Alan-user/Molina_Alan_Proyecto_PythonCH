@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CrearFlujoForm, BuscarFlujoForm
+from .forms import EditarFlujoForm
 from .models import Flujo_dinero
 
 
@@ -46,12 +47,9 @@ def tabla_general(request):
     flujos = Flujo_dinero.objects.all()
     
     if formulario.is_valid():
-        concepto = formulario.cleaned_data.get('concepto')
         tipo = formulario.cleaned_data.get('tipo')
         tipo_de_flujo = formulario.cleaned_data.get('tipo_de_flujo')
         
-        if concepto:
-            flujos = flujos.filter(concepto__icontains=concepto)
         if tipo:
             flujos = flujos.filter(tipo__icontains=tipo)  # Filtrando por el campo 'tipo'
         if tipo_de_flujo:
@@ -60,3 +58,44 @@ def tabla_general(request):
         formulario = BuscarFlujoForm()  # Reinicia el formulario después de la búsqueda
 
     return render(request, 'inicio/tabla_general.html', {'flujos': flujos, 'form': formulario})
+
+def ver_flujo(request,id):
+    flujo = Flujo_dinero.objects.get(id=id)
+    return render(request, 'inicio/ver_flujo.html', {'flujo': flujo})
+
+def eliminar_flujo(request, id):
+    flujo = Flujo_dinero.objects.get(id=id)
+    flujo.delete()
+    return redirect(request,'inicio:tabla_general', {'flujo': flujo})
+
+def editar_flujo(request, id):
+    flujo = get_object_or_404(Flujo_dinero, id=id)
+    
+    if request.method == "POST":
+        formulario = EditarFlujoForm(request.POST, initial={
+            'tipo_de_flujo': flujo.tipo_de_flujo,
+            'fecha': flujo.fecha,
+            'importe': flujo.importe,
+            'tipo': flujo.tipo,
+            'concepto': flujo.concepto,
+        })
+        
+        if formulario.is_valid():
+            flujo.tipo_de_flujo = formulario.cleaned_data.get('tipo_de_flujo', flujo.tipo_de_flujo)
+            flujo.fecha = formulario.cleaned_data.get('fecha', flujo.fecha)
+            flujo.importe = formulario.cleaned_data.get('importe', flujo.importe)
+            flujo.tipo = formulario.cleaned_data.get('tipo', flujo.tipo)
+            flujo.concepto = formulario.cleaned_data.get('concepto', flujo.concepto)
+            
+            flujo.save()
+            return redirect('inicio:tabla_general')
+    else:
+        formulario = EditarFlujoForm(initial={
+            'tipo_de_flujo': flujo.tipo_de_flujo,
+            'fecha': flujo.fecha,
+            'importe': flujo.importe,
+            'tipo': flujo.tipo,
+            'concepto': flujo.concepto,
+        })
+    
+    return render(request, 'inicio/editar_flujo.html', {'flujo': flujo, 'form': formulario})

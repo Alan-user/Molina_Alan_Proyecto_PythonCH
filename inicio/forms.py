@@ -2,7 +2,6 @@ from django import forms
 from django.core.exceptions import ValidationError
 from datetime import date
 
-
 class CrearFlujoForm(forms.Form):
     TIPO_MOVIMIENTO_CHOICES = [
         ('ingresos', 'Ingresos'),
@@ -44,6 +43,10 @@ class BuscarFlujoForm(forms.Form):
         ('Seguros', 'Seguros'),
     ]
     
-    concepto = forms.CharField(max_length=20, label='Concepto', required=False)
     tipo = forms.ChoiceField(choices=TIPO_GASTO_CHOICES, required=False, label='Tipo de Gasto')
     tipo_de_flujo = forms.ChoiceField(choices=TIPO_MOVIMIENTO_CHOICES, required=False, label='Tipo de Movimiento') 
+    
+class EditarFlujoForm(CrearFlujoForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+    

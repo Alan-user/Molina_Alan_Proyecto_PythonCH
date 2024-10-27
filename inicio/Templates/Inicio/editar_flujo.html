@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Editar Flujo
+{% endblock title_head %}
+
+{% block content %}
+<form action= {% url "inicio:editar_flujo" id=flujo.id %} method="POST">
+    
+    {% csrf_token %}
+    
+    <h2>Aquí podrás editar el movimiento de dinero seleccionado</h2>
+    
+    {{ form.as_p }}
+    
+    <input type="submit" value="Modificar" class="btn btn-primary">
+    <a href="{% url 'inicio:tabla_general' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock content %}
