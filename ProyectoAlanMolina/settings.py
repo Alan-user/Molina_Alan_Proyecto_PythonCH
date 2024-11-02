@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inicio',
     'django.contrib.humanize',
+    'gastos_en_cuotas',
 ]
 
 MIDDLEWARE = [

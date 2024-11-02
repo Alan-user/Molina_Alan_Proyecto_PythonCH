@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Crear Pago en Cuotas
+{% endblock title_head %}
+
+{% block Titulos %}
+{% endblock Titulos %}
+
+{% block content %}
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<h1>Crear Pago en Cuotas</h1>
+
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<p>A continuación podrá generar un registro de los consumos de su tarjeta, indicando los
+    siguientes campos:
+</p>
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<form action= {% url "gastos-en-cuotas:crear_g_cuotas" %} method="POST">
+    
+    {% csrf_token %}
+    <h2>Crear Pago en Cuotas</h2>
+
+    <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+    {{ form.as_p }}
+    <input type="submit" value="Crear" class="btn btn-primary">
+    <a href="{% url 'gastos-en-cuotas:crear_g_cuotas' %}" class="btn btn-secondary">Limpiar</a>
+    
+</form>
+
+{% endblock content %}

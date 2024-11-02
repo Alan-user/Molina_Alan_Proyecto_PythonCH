@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load format_filters %}
+
+{% block title_head %}
+Resumen de Gastos de Tarjeta
+{% endblock title_head %}
+
+{% block content %}
+
+<style>
+    .tabla {
+        width: 100%;
+        border-collapse: collapse; /* Asegura que los bordes se colapsen */
+    }
+    
+    /* Estilo de las cabeceras */
+    .tabla th {
+        padding: 10px;
+        text-align: left;
+        background-color: #f2f2f2;
+        border-bottom: 2px solid black; /* Solo borde inferior para las cabeceras */
+        width: 0%; /* Ajusta el ancho de las cabeceras según sea necesario */
+    }
+    
+    /* Estilo de las celdas */
+    .tabla td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid black; /* Solo borde inferior para las celdas */
+    }
+    
+    /* Remover el borde del contorno de la tabla */
+    .tabla, .tabla tr {
+        border: none; /* Sin borde exterior */
+    }
+    
+    .formulario {
+        margin-bottom: 30px; /* Espacio entre el formulario y la tabla */
+    }
+</style>
+
+{% comment "Formulario para instanciar un flujo" %}{% endcomment %}
+
+<a href="{% url 'gastos-en-cuotas:crear_g_cuotas' %}" class="btn btn-primary">Nuevo Gasto en Cuotas</a>
+
+<div class="formulario mt-4">
+    <form action="{% url 'gastos-en-cuotas:resumen_cuotas' %}" method="GET">
+        {{ form.as_p }}
+        <input type="submit" value="Buscar" class="btn btn-primary me-2">
+        <a href="{% url 'gastos-en-cuotas:resumen_cuotas' %}" class="btn btn-secondary">Limpiar Filtros</a>
+    </form>
+</div>
+
+
+{% if gastos %}
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Importe</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for gasto in gastos %}
+        <tr>
+            <td>{{ gasto.fecha|date:"d/m/Y" }}</td>
+            <td>{{ gasto.importe|custom_float_format }}</td>
+            
+            <td> 
+                | <a href="{% url 'gastos-en-cuotas:ver_cuotas' gasto.pk %}">Ver más</a>
+                | <a href="{% url "gastos-en-cuotas:editar_cuotas" gasto.pk %}">Editar</a>
+                | <a href={% url "gastos-en-cuotas:eliminar_cuotas" gasto.pk %}>Eliminar</a> |
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay flujos registrados para la selección marcada. Por favor, asegurese que haya ingresado correctamente los filtros o, bien, ingrese un nuevo flujo de dinero en la página principal para visualizarlo en esta sección.</p>
+{% endif %}
+{% endblock content %}

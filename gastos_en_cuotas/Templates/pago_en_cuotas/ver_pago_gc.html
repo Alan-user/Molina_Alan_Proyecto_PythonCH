@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load format_filters %}
+{% block title_head %}
+Ver Detalle de Pago en Cuotas
+{% endblock title_head %}
+
+{% block content %}
+<h3> Aquí podrá ver más información sobre el pago en cuotas seleccionado </h2>
+<p>
+    
+</p>
+{% comment "Esta sección es del ver un flujo en particular" %}{% endcomment %}
+<ul>
+    <li><b>Cantidad de Cuotas:</b> {{detalle.cantidad_cuotas}}</li>
+    <li><b>Importe:</b> {{detalle.importe |custom_float_format}} </li>
+    <li><b>Banco: </b>{{detalle.banco}} </li>
+    <li><b>Fecha: </b>{{detalle.fecha|date:"d/m/Y"}} </li>
+    <li><b>Concepto: </b>{{detalle.concepto}} </li>
+</ul>
+
+<a href="{% url 'gastos-en-cuotas:resumen_cuotas' %}" class="btn btn-primary">Volver</a>
+{% endblock content %}

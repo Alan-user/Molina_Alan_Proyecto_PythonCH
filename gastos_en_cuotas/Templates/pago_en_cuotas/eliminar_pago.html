@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Eliminar Pago en Cuotas
+{% endblock title_head %}
+
+{% block Titulos %}
+{% endblock Titulos %}
+
+{% block content %}
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<h1>Eliminar Pago en Cuotas</h1>
+
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<p>A continuación podrás eliminar un registro de los consumos de su tarjeta.
+</p>
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<form action= "{% url "gastos-en-cuotas:eliminar_cuotas" object.pk %}" method="POST">
+    
+    {% csrf_token %}
+    <h2>Eliminar Pago en Cuotas</h2>
+
+    <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+    <p>¿Desea eliminar el consumo {{gasto}}?</p>
+    <input type="submit" value="Confirmar" class="btn btn-primary">
+    <a href="{% url 'gastos-en-cuotas:resumen_cuotas' %}" class="btn btn-secondary">Cancelar</a>
+    
+</form>
+
+{% endblock content %}
