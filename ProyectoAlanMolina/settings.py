@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'inicio',
     'django.contrib.humanize',
     'gastos_en_cuotas',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     r"C:\Users\alane\Downloads\Python\Python Coderhouse\Proyecto\Proyecto\inicio\static",  # Ruta absoluta a tu carpeta de estáticos
 ]
+LOGIN_URL = '/usuarios/login/'

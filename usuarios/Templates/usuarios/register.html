@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Registrarse
+{% endblock title_head %}
+{% block Titulos %}{% endblock Titulos %}
+
+
+{% block content %}
+
+<h1 style="margin-top: 30px;">Registro</h1>
+
+<p>En esta sección podrá crearse un usuario en la plataforma</p>
+
+<form action="{% url 'usuarios:register' %}" method="POST">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Registrarse" class="btn btn-primary">
+    <a href="{% url 'inicio:inicio' %}" class="btn btn-secondary">Cancelar</a>
+
+</form> 
+
+{% endblock content %}

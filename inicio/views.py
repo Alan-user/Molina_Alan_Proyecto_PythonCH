@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CrearFlujoForm, BuscarFlujoForm
 from .forms import EditarFlujoForm
 from .models import Flujo_dinero
+from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
@@ -30,18 +31,15 @@ def inicio(request):
 def about_me(request):
     return render(request, 'inicio/about_me.html')
 
+@login_required
 def Tablero_general(request):
     return render(request, 'inicio/Tablero_general.html')
 
-def egresos(request):
-    return render(request, 'inicio/egresos.html')
-
-def ingresos(request):
-    return render(request, 'inicio/ingresos.html')
-
+@login_required
 def graficas(request):
     return render(request, 'inicio/graficas.html')
 
+@login_required
 def tabla_general(request): 
     formulario = BuscarFlujoForm(request.GET)
     flujos = Flujo_dinero.objects.all()
@@ -59,15 +57,18 @@ def tabla_general(request):
 
     return render(request, 'inicio/tabla_general.html', {'flujos': flujos, 'form': formulario})
 
+@login_required
 def ver_flujo(request,id):
     flujo = Flujo_dinero.objects.get(id=id)
     return render(request, 'inicio/ver_flujo.html', {'flujo': flujo})
 
+@login_required
 def eliminar_flujo(request, id):
     flujo = Flujo_dinero.objects.get(id=id)
     flujo.delete()
     return redirect(request,'inicio:tabla_general', {'flujo': flujo})
 
+@login_required
 def editar_flujo(request, id):
     flujo = get_object_or_404(Flujo_dinero, id=id)
     
