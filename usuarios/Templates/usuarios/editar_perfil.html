@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Editar Perfil
+{% endblock title_head %}
+{% block Titulos %}{% endblock Titulos %}
+
+
+{% block content %}
+
+<h1 style="margin-top: 30px;">Edición de perfil</h1>
+
+<p>Modifique los campos que desee cambiar</p>
+
+<form action="{% url 'usuarios:editar_perfil' %}" method="POST" enctype="multipart/form-data">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Editar" class="btn btn-dark">
+    <a href="{% url 'usuarios:mod_pass' %}" class="btn btn-secondary">Modificar contraseña</a>
+    <a href="{% url 'inicio:inicio' %}" class="btn btn-secondary">Cancelar</a>
+
+</form> 
+
+{% endblock content %}

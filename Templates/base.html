@@ -29,7 +29,10 @@
                 {% if request.user.is_authenticated %}
 
                 <div class="ms-auto me-3">
-                    <a class="navbar-brand" href= "#">{{request.user.username}}</a>
+                    <a class="navbar-brand" href= "{% url "usuarios:editar_perfil" %}">
+                        <img src={{request.user.datosextra.avatar.url}} alt="" height="50px">
+                        {{request.user.username}}
+                    </a>
                 </div>
 
                 <form action="{% url "usuarios:logout" %}" method='POST' >
@@ -135,7 +138,7 @@
                                             </div>
                                             <div class="sb-sidenav-footer">
                                                 <div class="small">Usted se ha registrado como:</div>
-                                                Usuario
+                                                {{request.user.username}}
                                             </div>
                                         </nav>
                                     </div>
@@ -156,7 +159,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">
                                 {% block Titulo_S %}
-                                Usuario
+                                {{request.user.username}}
                                 {% endblock Titulo_S %}
                             </li>
                         </ol>

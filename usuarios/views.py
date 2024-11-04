@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login as django_login
-from usuarios.forms import FormularioDeCreacionDeUsuario
+from usuarios.forms import FormularioDeCreacionDeUsuario, FormularioEdicionPerfil
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
+from usuarios.models import DatosExtra
+from django.urls import reverse_lazy
 
 def login(request):
     
@@ -10,12 +15,11 @@ def login(request):
     if request.method == 'POST':
         formulario = AuthenticationForm(request, data=request.POST)
         if formulario.is_valid():
-            usuario = formulario.cleaned_data.get('username')
-            contraseña = formulario.cleaned_data.get('password')
+            usuario = formulario.get_user()
             
-            try_logg = authenticate(username=usuario, password=contraseña)
+            django_login(request,usuario)
             
-            django_login(request,try_logg)
+            DatosExtra.objects.get_or_create(user=usuario)
             
             return redirect('inicio:inicio')
         
@@ -32,3 +36,30 @@ def register(request):
             
             return redirect('usuarios:login')
     return render(request, 'usuarios/register.html', {'form': formulario})
+
+@login_required
+def editar_perfil(request):
+    
+    datos_extra = request.user.datosextra
+    
+    formulario = FormularioEdicionPerfil(instance=request.user, initial= {'avatar': datos_extra.avatar})
+    
+    if request.method =='POST':
+        formulario = FormularioEdicionPerfil(request.POST, request.FILES, instance=request.user)
+        if formulario.is_valid():
+            
+            new_avatar = formulario.cleaned_data.get('avatar')
+            
+            datos_extra.avatar = new_avatar if new_avatar else datos_extra.avatar
+
+            datos_extra.save()
+            
+            formulario.save()
+            
+            return redirect('inicio:inicio')
+    
+    return render(request, 'usuarios/editar_perfil.html', {'form': formulario})
+
+class CambiarPass(LoginRequiredMixin, PasswordChangeView):
+    template_name= 'usuarios/mod_password.html'
+    success_url=reverse_lazy('usuarios:editar_perfil')
