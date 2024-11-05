@@ -1,3 +1,4 @@
 from django.contrib import admin
+from inicio.models import Flujo_dinero
 
-# Register your models here.
+admin.site.register(Flujo_dinero)
