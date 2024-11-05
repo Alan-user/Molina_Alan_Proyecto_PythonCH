@@ -16,6 +16,13 @@ Ver Flujo
     <li><b>Importe:</b> {{flujo.importe}} </li>
     <li><b>Clase: </b>{{flujo.tipo}} </li>
     <li><b>Concepto: </b>{{flujo.concepto}} </li>
+    <li><b>Comprobante:</b>
+        {% if flujo.comprobante %}
+            <a href="{{ flujo.comprobante.url }}" target="_blank">Ver Comprobante</a>
+        {% else %}
+            No disponible
+        {% endif %}
+    </li>
 </ul>
 
 <a href="{% url 'inicio:tabla_general' %}" class="btn btn-primary">Volver</a>

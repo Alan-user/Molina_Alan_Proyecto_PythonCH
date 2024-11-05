@@ -10,7 +10,7 @@ def inicio(request):
     formulario = CrearFlujoForm()
 
     if request.method == 'POST':
-        formulario = CrearFlujoForm(request.POST)
+        formulario = CrearFlujoForm(request.POST, request.FILES)
 
         if formulario.is_valid():
             data = formulario.cleaned_data
@@ -19,7 +19,8 @@ def inicio(request):
                 fecha=data.get('fecha'),
                 importe=data.get('importe'),
                 tipo=data.get('tipo'),
-                concepto=data.get('concepto')
+                concepto=data.get('concepto'),
+                comprobante=data.get('comprobante')
             )
             flujo.save()
 

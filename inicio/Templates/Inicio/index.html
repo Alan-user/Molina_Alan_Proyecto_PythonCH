@@ -18,15 +18,11 @@ Inicio
     <p>Para ello podrás ingresar cada uno de estos flujos por los botones que se encuentran a 
     continuación.</p>
 
-<form action= {% url "inicio:inicio" %} method="POST">
-
+<form action= "{% url "inicio:inicio" %}" method="POST" enctype="multipart/form-data">
     
     {% csrf_token %}
-    
     <h2>Aquí podrás cargar un nuevo movimiento de dinero</h2>
-
     {{ form.as_p }}
-
     <input type="submit" value="Crear" class="btn btn-primary">
     <a href="{% url 'inicio:inicio' %}" class="btn btn-secondary">Limpiar</a>
     

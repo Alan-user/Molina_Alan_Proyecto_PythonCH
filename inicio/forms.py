@@ -27,6 +27,7 @@ class CrearFlujoForm(forms.Form):
         label='Importe', required=True)
     tipo = forms.ChoiceField(choices=TIPO_GASTO_CHOICES, label='Tipo de Gasto', required=True)
     concepto = forms.CharField(max_length=20, label='Concepto', required=True)
+    comprobante = forms.ImageField(required=False)
 
 class BuscarFlujoForm(forms.Form):
     TIPO_MOVIMIENTO_CHOICES = [
