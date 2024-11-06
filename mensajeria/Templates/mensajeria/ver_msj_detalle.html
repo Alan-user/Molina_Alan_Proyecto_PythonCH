@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load format_filters %}
+{% block title_head %}
+Ver Detalle
+{% endblock title_head %}
+
+{% block content %}
+<h3> Aquí podrá ver el contenido del mail seleccionado </h2>
+<p></p>
+<ul>
+    <li><b>Destinatario:</b> {{msj.destinatario}}</li>
+    <li><b>Remitente:</b> {{msj.remitente}}</li>
+    <li><b>Mail:</b> {{msj.destinatario.email}} </li>
+    <li><b>Fecha: </b>{{msj.fecha|date:"d/m/Y"}}</li>
+    <li><b>Asunto: </b>{{msj.asunto}}</li>
+    <li><b>Mensaje:</b> {{msj.cuerpo}}</li>
+</ul>
+
+<a href="{% url 'mensajeria:ver' %}" class="btn btn-dark">Volver</a>
+{% endblock content %}

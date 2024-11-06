@@ -1,5 +1,4 @@
 from django.db import models
-
 class PagoEnCuotas(models.Model):
     
     BANCOS= [

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load format_filters %}
+
+{% block title_head %}
+Eliminar Mensaje
+{% endblock title_head %}
+
+{% block Titulos %}
+{% endblock Titulos %}
+
+{% block content %}
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<h1 style="margin-top: 30px;">Eliminar Mensaje</h1>
+
+<p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+<form action= "{% url "mensajeria:eliminar" mensaje.id %}" method="POST">
+    
+    {% csrf_token %}
+
+    <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
+
+    <p>¿Desea eliminar el mensaje de {{mensaje.remitente}} con asunto {{mensaje.asunto}} ?</p>
+    <input type="submit" value="Confirmar" class="btn btn-dark">
+    <a href="{% url 'mensajeria:ver' %}" class="btn btn-secondary">Cancelar</a>
+    
+</form>
+
+{% endblock content %}

@@ -6,7 +6,15 @@
 Tabla General
 {% endblock title_head %}
 
+{% block Titulos %}{% endblock Titulos %}
+
 {% block content %}
+<h1 style="margin-top: 30px;"> Resumen de Flujos de Dinero </h1>
+
+<p>
+    En esta sección podrá visualizar todos los gastos
+    que han sido creados. Si desea ver más información dirijase a "Ver más".    
+</p>
 
 <style>
     .tabla {
@@ -68,7 +76,7 @@ Tabla General
             <td>{{ flujo.importe|custom_float_format }}</td>
             <td>{{ flujo.fecha|date:"d/m/Y" }}</td>
             <td>{{ flujo.tipo }}</td>
-            <td>{{auto}} 
+            <td>
                 | <a href={% url "inicio:ver_flujo" flujo.id %}>Ver más</a>
                 | <a href={% url "inicio:editar_flujo" flujo.id %}>Editar</a>
                 | <a href={% url "inicio:eliminar_flujo" flujo.id %}>Eliminar</a> |

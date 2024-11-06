@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'gastos_en_cuotas',
     'usuarios',
+    'mensajeria',
 ]
 
 MIDDLEWARE = [
