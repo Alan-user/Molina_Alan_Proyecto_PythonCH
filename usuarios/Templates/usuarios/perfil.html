@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load format_filters %}
+{% block title_head %}
+Perfil
+{% endblock title_head %}
+
+{% block Titulos %}{% endblock Titulos %}
+
+{% block content %}
+<h1 style="margin-top: 30px;"> Mi perfil</h1>
+
+<ul>
+    <li><b>Nombre:</b> {{user.first_name}}</li>
+    <li><b>Apellido:</b> {{user.last_name}} </li>
+    <li><b>Años:</b> {{datos_extra.años}}</li>
+    <li><b>Email </b>{{user.email}} </li>
+    <li><b>Fecha de Nacimiento:</b> {{datos_extra.fecha_de_nacimiento|date:"d/m/Y"}}</li>
+    <li><b>Acerca de mí: </b>{{datos_extra.acerca_de_mi}} </li>
+</ul>
+
+<a href="{% url 'usuarios:editar_perfil' %}" class="btn btn-dark">Editar</a>
+<a href="{% url 'inicio:inicio' %}" class="btn btn-secondary">Volver</a>
+
+{% endblock content %}

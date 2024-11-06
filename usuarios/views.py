@@ -42,7 +42,12 @@ def editar_perfil(request):
     
     datos_extra = request.user.datosextra
     
-    formulario = FormularioEdicionPerfil(instance=request.user, initial= {'avatar': datos_extra.avatar})
+    formulario = FormularioEdicionPerfil(instance=request.user, 
+                                         initial= {'avatar': datos_extra.avatar,
+                                                   'años':datos_extra.años,
+                                                   'fecha_de_nacimiento': datos_extra.fecha_de_nacimiento,
+                                                   'acerca_de_mi': datos_extra.acerca_de_mi
+                                         })
     
     if request.method =='POST':
         formulario = FormularioEdicionPerfil(request.POST, request.FILES, instance=request.user)
@@ -51,15 +56,23 @@ def editar_perfil(request):
             new_avatar = formulario.cleaned_data.get('avatar')
             
             datos_extra.avatar = new_avatar if new_avatar else datos_extra.avatar
+            datos_extra.años = formulario.cleaned_data.get('años')
+            datos_extra.fecha_de_nacimiento = formulario.cleaned_data.get('fecha_de_nacimiento')
+            datos_extra.acerca_de_mi = formulario.cleaned_data.get('acerca_de_mi')
 
             datos_extra.save()
             
             formulario.save()
             
-            return redirect('inicio:inicio')
+            return redirect('usuarios:perfil')
     
     return render(request, 'usuarios/editar_perfil.html', {'form': formulario})
 
 class CambiarPass(LoginRequiredMixin, PasswordChangeView):
     template_name= 'usuarios/mod_password.html'
     success_url=reverse_lazy('usuarios:editar_perfil')
+
+@login_required
+def perfil(request):
+    datos_extra = request.user.datosextra
+    return render(request, 'usuarios/perfil.html', {'user': request.user, 'datos_extra': datos_extra})
