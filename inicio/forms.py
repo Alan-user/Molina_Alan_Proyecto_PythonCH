@@ -21,8 +21,8 @@ class CrearFlujoForm(forms.Form):
     tipo_de_flujo = forms.ChoiceField(choices=TIPO_MOVIMIENTO_CHOICES, 
         widget=forms.RadioSelect,
         label='Tipo de Flujo', required=True)
-    fecha = forms.DateField(widget=forms.TextInput(attrs={'placeholder': 'DD-MM-YYYY'}),
-                            label='Fecha', required=True)
+    fecha = forms.DateField(label='Fecha', widget=forms.DateInput(attrs={'type': 'date'}),
+                            required=True)
     importe = forms.FloatField(widget=forms.NumberInput(attrs={'placeholder': '$$$$$'}),
         label='Importe', required=True)
     tipo = forms.ChoiceField(choices=TIPO_GASTO_CHOICES, label='Tipo de Gasto', required=True)
