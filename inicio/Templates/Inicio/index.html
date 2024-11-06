@@ -23,7 +23,7 @@ Inicio
     {% csrf_token %}
     <h2>Aquí podrás cargar un nuevo movimiento de dinero</h2>
     {{ form.as_p }}
-    <input type="submit" value="Crear" class="btn btn-primary">
+    <input type="submit" value="Crear" class="btn btn-dark">
     <a href="{% url 'inicio:inicio' %}" class="btn btn-secondary">Limpiar</a>
     
 </form>

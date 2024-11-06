@@ -7,13 +7,10 @@ Ver Flujo
 
 {% block content %}
 <h3> Aquí podrá ver el flujo seleccionado </h2>
-<p>
-    
-</p>
-{% comment "Esta sección es del ver un flujo en particular" %}{% endcomment %}
+<p></p>
 <ul>
     <li><b>Tipo de Flujo:</b> {{flujo.tipo_de_flujo}}</li>
-    <li><b>Importe:</b> {{flujo.importe}} </li>
+    <li><b>Importe:</b> {{flujo.importe|custom_float_format}} </li>
     <li><b>Clase: </b>{{flujo.tipo}} </li>
     <li><b>Concepto: </b>{{flujo.concepto}} </li>
     <li><b>Comprobante:</b>
@@ -25,5 +22,5 @@ Ver Flujo
     </li>
 </ul>
 
-<a href="{% url 'inicio:tabla_general' %}" class="btn btn-primary">Volver</a>
+<a href="{% url 'inicio:tabla_general' %}" class="btn btn-dark">Volver</a>
 {% endblock content %}

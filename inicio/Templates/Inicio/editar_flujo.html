@@ -3,14 +3,15 @@
 {% block title_head %}
 Editar Flujo
 {% endblock title_head %}
-
+{% block Titulos %}{% endblock Titulos %}
 {% block content %}
+
 <form action= "{% url "inicio:editar_flujo" id=flujo.id %}" method="POST" enctype="multipart/form-data">
     
     {% csrf_token %}
-    <h2>Aquí podrás editar el movimiento de dinero seleccionado</h2>
+    <h1 style="margin-top: 30px;">Aquí podrás editar el movimiento de dinero seleccionado</h1>
     {{ form.as_p }}
-    <input type="submit" value="Modificar" class="btn btn-primary">
+    <input type="submit" value="Modificar" class="btn btn-dark">
     <a href="{% url 'inicio:tabla_general' %}" class="btn btn-secondary">Cancelar</a>
 </form>
 

@@ -42,12 +42,12 @@ Resumen de Gastos de Tarjeta
 
 {% comment "Formulario para instanciar un flujo" %}{% endcomment %}
 
-<a href="{% url 'gastos-en-cuotas:crear_g_cuotas' %}" class="btn btn-primary">Nuevo Gasto en Cuotas</a>
+<a href="{% url 'gastos-en-cuotas:crear_g_cuotas' %}" class="btn btn-dark">Nuevo Gasto en Cuotas</a>
 
 <div class="formulario mt-4">
     <form action="{% url 'gastos-en-cuotas:resumen_cuotas' %}" method="GET">
         {{ form.as_p }}
-        <input type="submit" value="Buscar" class="btn btn-primary me-2">
+        <input type="submit" value="Buscar" class="btn btn-dark me-2">
         <a href="{% url 'gastos-en-cuotas:resumen_cuotas' %}" class="btn btn-secondary">Limpiar Filtros</a>
     </form>
 </div>

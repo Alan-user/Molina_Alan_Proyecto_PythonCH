@@ -4,9 +4,10 @@
 Editar Pago en Cuotas
 {% endblock title_head %}
 
+{% block Titulos %}{% endblock Titulos %}
 {% block content %}
 
-<h1>Editar Pago en Cuotas</h1>
+<h1 style="margin-top: 30px;">Editar Pago en Cuotas</h1>
 
 <p>A continuación podrás editar el registro de los consumos de su tarjeta seleccionado:</p>
 
@@ -17,7 +18,7 @@ Editar Pago en Cuotas
     
     {{ form.as_p }}
     
-    <input type="submit" value="Editar" class="btn btn-primary">
+    <input type="submit" value="Editar" class="btn btn-dark">
     <a href="{% url 'gastos-en-cuotas:editar_cuotas' form.instance.pk %}" class="btn btn-secondary">Limpiar</a>
 </form>
 

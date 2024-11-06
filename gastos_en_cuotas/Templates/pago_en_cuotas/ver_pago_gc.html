@@ -5,8 +5,9 @@
 Ver Detalle de Pago en Cuotas
 {% endblock title_head %}
 
+{% block Titulos %}{% endblock Titulos %}
 {% block content %}
-<h3> Aquí podrá ver más información sobre el pago en cuotas seleccionado </h2>
+<h1 style="margin-top: 30px;">Aquí podrá ver más información sobre el pago en cuotas seleccionado </h1>
 <p>
     
 </p>
@@ -19,5 +20,5 @@ Ver Detalle de Pago en Cuotas
     <li><b>Concepto: </b>{{detalle.concepto}} </li>
 </ul>
 
-<a href="{% url 'gastos-en-cuotas:resumen_cuotas' %}" class="btn btn-primary">Volver</a>
+<a href="{% url 'gastos-en-cuotas:resumen_cuotas' %}" class="btn btn-dark">Volver</a>
 {% endblock content %}

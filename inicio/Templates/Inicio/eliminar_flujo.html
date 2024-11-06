@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load format_filters %}
 
 {% block title_head %}
-Eliminar Pago en Cuotas
+Eliminar Flujo
 {% endblock title_head %}
 
 {% block Titulos %}
@@ -11,19 +12,19 @@ Eliminar Pago en Cuotas
 
 <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
 
-<h1 style="margin-top: 30px;">Eliminar Pago en Cuotas</h1>
+<h1 style="margin-top: 30px;">Eliminar Flujo de Dinero</h1>
 
 <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
 
-<form action= "{% url "gastos-en-cuotas:eliminar_cuotas" object.pk %}" method="POST">
+<form action= "{% url "inicio:eliminar_flujo" flujo.id %}" method="POST">
     
     {% csrf_token %}
 
     <p></p> {% comment "Espacio entre párrafos" %}{% endcomment %}
 
-    <p>¿Desea eliminar el consumo {{gasto}}?</p>
+    <p>¿Desea eliminar el flujo de importe {{flujo.importe|custom_float_format}} y concepto {{flujo.concepto}} ?</p>
     <input type="submit" value="Confirmar" class="btn btn-dark">
-    <a href="{% url 'gastos-en-cuotas:resumen_cuotas' %}" class="btn btn-secondary">Cancelar</a>
+    <a href="{% url 'inicio:tabla_general' %}" class="btn btn-secondary">Cancelar</a>
     
 </form>
 

@@ -65,9 +65,13 @@ def ver_flujo(request,id):
 
 @login_required
 def eliminar_flujo(request, id):
-    flujo = Flujo_dinero.objects.get(id=id)
-    flujo.delete()
-    return redirect(request,'inicio:tabla_general', {'flujo': flujo})
+    flujo = get_object_or_404(Flujo_dinero, id=id)
+    
+    if request.method == 'POST':
+        flujo.delete()
+        return redirect('inicio:tabla_general')  # Redirigir después de eliminar
+
+    return render(request, 'inicio/eliminar_flujo.html', {'flujo': flujo})
 
 @login_required
 def editar_flujo(request, id):
