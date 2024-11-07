@@ -4,7 +4,7 @@ from .forms import EditarFlujoForm
 from .models import Flujo_dinero
 from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def inicio(request):
     # Inicializa el formulario vacío
     formulario = CrearFlujoForm()
